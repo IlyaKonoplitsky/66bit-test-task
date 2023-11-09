@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  
+    .button_container {
+      margin: 10px;
+      padding: 30px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 700;
+      width: 400px;
+      text-align: center;
+    }
+  }
+  
+  
+  

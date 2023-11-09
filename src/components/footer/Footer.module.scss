@@ -1,0 +1,28 @@
+.footer_container {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+  
+    .button_container {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      margin: 0 auto;
+      width: 700px;
+    }
+  
+    .button {
+      font-size: 20px;
+      padding: 20px;
+      width: 50%;
+      text-align: center;
+      font-weight: bold;
+      align-items: center;
+      vertical-align: middle;
+      cursor: pointer;
+      border: 0;
+      outline: none;
+      background-color: transparent;
+    }
+  }
+  
