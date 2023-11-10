@@ -21,7 +21,7 @@ const App = () => {
     } else {
       dispatch(getTheme(name));
     }
-  }, []);
+  }, [dispatch]);
   
   return (
     <div>

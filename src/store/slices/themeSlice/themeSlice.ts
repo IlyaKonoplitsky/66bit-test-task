@@ -9,10 +9,6 @@ export type TTheme = {
   secondColor: string;
 };
 
-export type TGetThemes = {
-  themeName: string;
-};
-
 type ThemeState = {
   name: TTheme | null;
   loading: boolean;
@@ -25,7 +21,7 @@ const initialState: ThemeState = {
   error: false,
 };
 
-export const getTheme = createAsyncThunk<TTheme, TGetThemes, { rejectValue: string }>(
+export const getTheme = createAsyncThunk<TTheme, string, { rejectValue: string }>(
   'theme/getTheme',
   async (name, {rejectWithValue}) => {
     try {

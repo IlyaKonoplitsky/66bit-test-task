@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTypedDispatch } from "../../hooks/useTypedDispatch/useTypedDispatch.ts";
-import {getTheme, TGetThemes} from "../../store/slices/themeSlice/themeSlice.ts";
+import {getTheme } from "../../store/slices/themeSlice/themeSlice.ts";
 import classes from "./ThemePage.module.scss"
 import { useTypedSelector } from '../../hooks/useTypedSelector/useTypedSelector.ts';
 import {Loader} from "../../components";
@@ -10,7 +10,7 @@ export const ThemePage: FC = () => {
   const { loading} = useTypedSelector((state) => state.theme)
   const theme = useTypedSelector((state) => state.theme.name)
   
-  const changeTheme = (name: TGetThemes) => {
+  const changeTheme = (name: string) => {
     dispatch(getTheme(name));
   };
   

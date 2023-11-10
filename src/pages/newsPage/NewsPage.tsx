@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {useTypedSelector} from "../../hooks/useTypedSelector/useTypedSelector.ts";
 import {useTypedDispatch} from "../../hooks/useTypedDispatch/useTypedDispatch.ts";
 import { getNews} from "../../store/slices/newsSlice/newsSlice.ts";
@@ -14,25 +14,26 @@ export function NewsPage() {
     if (page === 1 && !loading) {
       dispatch(getNews(2));
     }
-  }, [page, loading]);
-  
-  const handleScroll = () => {
+  }, [page, loading, dispatch]);
+
+  const handleScroll = useCallback(() => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !loading) {
       const scrollPosition = window.innerHeight + window.scrollY;
       const documentHeight = document.body.offsetHeight;
-      
+
       if (scrollPosition >= documentHeight - 200) {
         dispatch(getNews(page));
       }
     }
-  };
-  
+  }, [page, loading, dispatch]);
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [page, loading]);
+  }, [handleScroll]);
   
   const borderBottomStyle = `3px solid ${theme?.mainColor}`
   

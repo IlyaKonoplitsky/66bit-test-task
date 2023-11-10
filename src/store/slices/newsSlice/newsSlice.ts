@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {$api} from "../instance.ts";
+import { $api } from '../instance';
 
 type TNews = {
   id: number
@@ -7,10 +7,6 @@ type TNews = {
   content: string
   createdAt: string
   updatedAt: string
-}
-
-export type TGetNews = {
-  page: number
 }
 
 type NewsState = {
@@ -29,7 +25,7 @@ const initialState: NewsState = {
   error: false
 }
 
-export const getNews = createAsyncThunk<TNews[], TGetNews, {rejectValue: string} >(
+export const getNews = createAsyncThunk<TNews[], number, {rejectValue: string} >(
   'news/getNews',
   async (page, { rejectWithValue }) => {
     try {
@@ -51,7 +47,10 @@ const newsSlice = createSlice({
       state.error = false
     })
     .addCase(getNews.fulfilled, (state, action) => {
-      state.news = [...state.news, ...action.payload];
+      const uniqueKey = action.payload.filter(newsItem => 
+        !state.news.some(existingItem => existingItem.id === newsItem.id)
+      )
+      state.news = [...state.news, ...uniqueKey];
       state.loading = false;
       state.page += 1
     })
